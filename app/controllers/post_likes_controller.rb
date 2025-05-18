@@ -3,8 +3,8 @@ class PostLikesController < ApplicationController
   before_action :set_post
 
   def create
-    unless @post.post_likes.exists?(user: current_user)
-      @post.post_likes.create(user: current_user)
+   unless @post.post_likes.exists?(user: current_user)
+      @post.post_likes.create!(user: current_user)
     end
     redirect_back fallback_location: root_path
   end
