@@ -1,0 +1,9 @@
+linters:
+  LineLength:
+    max: 120
+
+  CommentControlStatement:
+    enabled: true
+
+  TrailingBlankLines:
+    enabled: true

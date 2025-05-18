@@ -21,4 +21,3 @@ header
           ul.dropdown-menu
             - I18n.available_locales.each do |locale|
               li = link_to locale.to_s.upcase, url_for(locale: locale, only_path: true), class: 'dropdown-item'
-
