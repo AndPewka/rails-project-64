@@ -45,7 +45,7 @@ class PostsController < ApplicationController
   def set_post
     @post = Post.find(params[:id])
 
-    if @post.user != current_user
+    if %w[edit update destroy].include?(action_name) && @post.user != current_user
       redirect_to root_path, alert: t("post.forbidden")
     end
   end

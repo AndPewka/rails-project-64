@@ -1,0 +1,22 @@
+.comment-block style="margin-left: #{comment.depth * 30}px;"
+  p.mb-1 = comment.content
+
+  small.text-muted.d-flex.align-items-center.gap-2
+    - if user_signed_in? && current_user == comment.user
+      = button_to t("comments.delete"), post_comment_path(comment.post, comment), method: :delete,
+          data: { turbo_confirm: t("comments.confirm_delete") },
+          class: "btn btn-sm btn-outline-danger btn-sm py-0 px-2"
+    span = comment.user.email
+    span = l(comment.created_at, format: :short)
+
+  - if user_signed_in?
+    .mt-2
+      = form_with url: post_comments_path(comment.post), local: true do
+        = hidden_field_tag "post_comment[parent_id]", comment.id
+        .mb-2
+          = text_area_tag "post_comment[content]", nil, rows: 2, class: "form-control", placeholder: t("comments.reply")
+        = submit_tag t("comments.submit_reply"), class: "btn btn-sm btn-outline-primary"
+
+- if children.any?
+  - children.each do |child, child_children|
+    = render partial: "comments/comment", locals: { comment: child, children: child_children }

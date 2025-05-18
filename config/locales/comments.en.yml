@@ -1,0 +1,9 @@
+en:
+  comments:
+    title: "Comments"
+    submit_reply: "Send"
+    reply: "comment..."
+
+    created: "Comment was sent"
+    deleted: "Comment was deleted"
+    confirm_delete: "Delete comment?"
