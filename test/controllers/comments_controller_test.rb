@@ -57,7 +57,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to post_path(@post, locale: :en)
     follow_redirect!
-    assert_match I18n.t("comments.failed"), response.body
+    assert_select "div", text: I18n.t("comments.failed")
   end
 
   test "other user cannot delete someone else's comment" do
