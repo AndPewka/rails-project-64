@@ -7,3 +7,10 @@ linters:
 
   TrailingBlankLines:
     enabled: true
+
+exclude:
+  - 'vendor/**/*'
+  - 'node_modules/**/*'
+  - 'bin/**/*'
+  - 'db/schema.rb'
+  - 'db/migrate/**/*'
