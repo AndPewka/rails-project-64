@@ -5,7 +5,25 @@
     .card.mb-3.shadow-sm
       .card-body
         h5.card-title = link_to post.title, post_path(post), class: 'text-decoration-none'
-        p.card-text.text-muted
-          = t("post.category") + ": #{post.category&.name} · #{t("post.author")}: #{post.user&.email}"
 
-          p.mt-3 = truncate(post.body, length: 200)
+        p.card-text.text-muted
+          = "#{t("post.category")}: #{post.category&.name} · #{t("post.author")}: #{post.user&.email}"
+
+        p.mt-3 = truncate(post.body, length: 200)
+
+        .d-flex.justify-content-end.align-items-center.mt-3
+          - if user_signed_in?
+            - if current_user.liked_posts.include?(post)
+              = button_to "#{t("post.unlike")} (#{post.post_likes.count})",
+                  post_post_like_path(post),
+                  method: :delete,
+                  class: "btn btn-sm btn-outline-danger"
+            - else
+              = button_to "#{t("post.like")} (#{post.post_likes.count})",
+                  post_post_like_path(post),
+                  method: :post,
+                  class: "btn btn-sm btn-outline-primary"
+          - else
+            = button_tag "#{t("post.like")} (#{post.post_likes.count})",
+                class: "btn btn-sm btn-outline-secondary",
+                disabled: true

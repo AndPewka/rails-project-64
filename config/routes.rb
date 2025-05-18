@@ -17,11 +17,11 @@ Rails.application.routes.draw do
 
 
   scope "(:locale)", locale: /en|ru/ do
-    # root to: "pages#home"
     root to: "posts#index"
     devise_for :users
     resources :posts do
       resources :comments, only: [ :create, :destroy ]
+      resource :post_like, only: [ :create, :destroy]
     end
   end
 end

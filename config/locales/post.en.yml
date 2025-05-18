@@ -18,6 +18,9 @@ en:
     destroyed: "The post was deleted"
     confirm_delete: "Delete the post?"
 
+    like: "Like"
+    unlike: "Unlike"
+
 
 
 
