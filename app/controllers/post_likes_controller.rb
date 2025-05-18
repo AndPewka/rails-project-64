@@ -4,9 +4,9 @@ class PostLikesController < ApplicationController
 
   def create
    unless @post.post_likes.exists?(user: current_user)
-      @post.post_likes.create!(user: current_user)
-    end
-    redirect_back fallback_location: root_path
+     @post.post_likes.create!(user: current_user)
+   end
+   redirect_back fallback_location: root_path
   end
 
   def destroy
