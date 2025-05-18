@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
   def index
-    @posts = Post.includes(:user, :category).order(created_at: :desc)
+    @posts = Post.includes(:creator, :category).order(created_at: :desc)
   end
 
   def new
@@ -45,7 +45,7 @@ class PostsController < ApplicationController
   def set_post
     @post = Post.find(params[:id])
 
-    if %w[edit update destroy].include?(action_name) && @post.user != current_user
+    if %w[edit update destroy].include?(action_name) && @post.creator != current_user
       redirect_to root_path, alert: t("post.forbidden")
     end
   end
