@@ -1,0 +1,21 @@
+ru:
+  post:
+    create: "Создать"
+    new_post: "Новый пост"
+    update: "Изменить"
+    delete: "Удалить"
+    back: "Назад"
+
+    latest_posts: "Последние посты"
+    title: "Заголовок"
+    body: "Содержание"
+    category: "Категория"
+    author: "Автор"
+
+    forbidden: "Вы не можете редактировать этот пост"
+    created: "Пост создан"
+    updated: "Пост изменен"
+    destroyed: "Пост удален"
+    confirm_delete: "Удалить пост?"
+
+

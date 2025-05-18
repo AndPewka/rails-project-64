@@ -1,0 +1,9 @@
+ru:
+  ui:
+    sign_in: "Войти"
+    sign_up: "Регистрация"
+    sign_out: "Выйти"
+    switch_locale: "RU"
+
+    blog: "Блог"
+    new_post: "Новый пост"

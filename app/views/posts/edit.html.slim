@@ -1,0 +1,12 @@
+.container.mt-5
+  .card.shadow
+    .card-header
+      h2 = t("ui.edit_post")
+
+    .card-body
+      = simple_form_for @post do |f|
+        = f.input :title, label: t('post.title')
+        = f.input :body, as: :text, label: t('post.body')
+        = f.input :category_id, collection: Category.all, label: t('post.category'), prompt: false
+
+        = f.button :submit, t("post.update"), class: "btn btn-primary"

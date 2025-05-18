@@ -1,0 +1,21 @@
+.container.d-flex.justify-content-center.align-items-center.min-vh-100
+  .card.shadow.p-4(style="width: 100%; max-width: 500px;")
+    h2.mb-4.text-center Sign up
+
+    = form_with model: resource, url: registration_path(resource_name), local: true do |f|
+      .mb-3
+        = f.label :email, class: "form-label"
+        = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+
+      .mb-3
+        = f.label :password, class: "form-label"
+        = f.password_field :password, autocomplete: "new-password", class: "form-control"
+
+      .mb-3
+        = f.label :password_confirmation, class: "form-label"
+        = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"
+
+      = f.submit "Sign up", class: "btn btn-primary w-100"
+
+    .mt-3.text-center
+      = link_to "Already have an account? Sign in", new_session_path(resource_name)

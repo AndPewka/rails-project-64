@@ -1,0 +1,9 @@
+en:
+  ui:
+    sign_in: "Sign in"
+    sign_up: "Sign up"
+    sign_out: "Sign out"
+    switch_locale: "EN"
+
+    blog: "Blog"
+    new_post: "New post"

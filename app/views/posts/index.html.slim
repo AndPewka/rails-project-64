@@ -1,0 +1,11 @@
+.container.mt-4
+  h2.mb-4 = t('post.latest_posts')
+
+  - @posts.each do |post|
+    .card.mb-3.shadow-sm
+      .card-body
+        h5.card-title = link_to post.title, post_path(post), class: 'text-decoration-none'
+        p.card-text.text-muted
+          = t("post.category") + ": #{post.category&.name} · #{t("post.author")}: #{post.user&.email}"
+
+          p.mt-3 = truncate(post.body, length: 200)

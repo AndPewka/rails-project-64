@@ -1,0 +1,23 @@
+en:
+  post:
+    create: "Create"
+    new_post: "New post"
+    update: "Update"
+    delete: "Delete"
+    back: "Back"
+
+    latest_posts: "Latest post"
+    title: "Title"
+    body: "Body"
+    category: "Category"
+    author: "Author"
+
+    forbidden: "You can't edit this post."
+    created: "The post has been successfully created"
+    updated: "The post was updated"
+    destroyed: "The post was deleted"
+    confirm_delete: "Delete the post?"
+
+
+
+
