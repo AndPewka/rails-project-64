@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     devise_for :users
     resources :posts do
       resources :comments, only: [ :create, :destroy ]
-      resources :post_likes, only: [ :create, :destroy ]
     end
+    resource :post_like, only: [:create, :destroy]
   end
 end

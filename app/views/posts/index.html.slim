@@ -15,12 +15,12 @@
           - if user_signed_in?
             - if current_user.liked_posts.include?(post)
               = button_to "#{t("post.unlike")} (#{post.post_likes.count})",
-                  post_post_likes_path(post),
+                  post_like_path(post_id: post.id),
                   method: :delete,
                   class: "btn btn-sm btn-outline-danger"
             - else
               = button_to "#{t("post.like")} (#{post.post_likes.count})",
-                  post_post_likes_path(post),
+                  post_like_path(post_id: post.id),
                   method: :post,
                   class: "btn btn-sm btn-outline-primary"
           - else
