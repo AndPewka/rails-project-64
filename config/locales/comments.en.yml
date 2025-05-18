@@ -7,3 +7,4 @@ en:
     created: "Comment was sent"
     deleted: "Comment was deleted"
     confirm_delete: "Delete comment?"
+    failed: "Comment can't be blank"
