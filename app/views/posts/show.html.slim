@@ -22,15 +22,15 @@
             = button_to "#{t('post.unlike')} (#{count})",
                     post_like_path(@post, like),
                     method: :delete,
-                    class: "btn btn-sm btn-outline-danger"
+                    class: 'btn btn-sm btn-outline-danger'
           - else
             = button_to "#{t('post.like')} (#{count})",
                     post_likes_path(@post),
                     method: :post,
-                    class: "btn btn-sm btn-outline-primary"
+                    class: 'btn btn-sm btn-outline-primary'
         - else
           = button_tag "#{t('post.like')} (#{count})",
-                  class: "btn btn-sm btn-outline-secondary",
+                  class: 'btn btn-sm btn-outline-secondary',
                   disabled: true
 
 .container.mt-4

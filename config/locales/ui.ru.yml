@@ -4,6 +4,7 @@ ru:
     sign_up: "Регистрация"
     sign_out: "Выйти"
     switch_locale: "RU"
+    language: "Язык"
 
     blog: "Блог"
     new_post: "Новый пост"

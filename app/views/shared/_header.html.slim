@@ -16,8 +16,8 @@ header
           = link_to t('ui.sign_up'), new_user_registration_path, class: 'btn btn-primary'
 
         .dropdown
-          button.btn.btn-outline-secondary.dropdown-toggle type="button" data-bs-toggle="dropdown" aria-expanded="false"
-            = t("ui.language") + ": " + I18n.locale.to_s.upcase
+          button.btn.btn-outline-secondary.dropdown-toggle type='button' data-bs-toggle='dropdown' aria-expanded='false'
+            = "#{t('ui.language')}: #{I18n.locale.to_s.upcase}"
           ul.dropdown-menu
             - I18n.available_locales.each do |locale|
               li = link_to locale.to_s.upcase, url_for(locale: locale, only_path: true), class: 'dropdown-item'

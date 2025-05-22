@@ -4,6 +4,7 @@ en:
     sign_up: "Sign up"
     sign_out: "Sign out"
     switch_locale: "EN"
+    language: "Language"
 
     blog: "Blog"
     new_post: "New post"

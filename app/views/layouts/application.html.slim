@@ -2,25 +2,25 @@ doctype html
 html
   head
     title
-      = content_for(:title) || "Rails Project 64"
-    meta[name="viewport" content="width=device-width,initial-scale=1"]
-    meta[name="apple-mobile-web-app-capable" content="yes"]
-    meta[name="mobile-web-app-capable" content="yes"]
+      = content_for(:title) || 'Rails Project 64'
+    meta[name='viewport' content='width=device-width,initial-scale=1']
+    meta[name='apple-mobile-web-app-capable' content='yes']
+    meta[name='mobile-web-app-capable' content='yes']
     = csrf_meta_tags
     = csp_meta_tag
     = yield :head
-    link[rel="icon" href="/icon.png" type="image/png"]
-    link[rel="icon" href="/icon.svg" type="image/svg+xml"]
-    link[rel="apple-touch-icon" href="/icon.png"]
-    = stylesheet_link_tag :application, "data-turbo-track": "reload"
-    = javascript_include_tag :application, "data-turbo-track": "reload", defer: true
+    link[rel='icon' href='/icon.png' type='image/png']
+    link[rel='icon' href='/icon.svg' type='image/svg+xml']
+    link[rel='apple-touch-icon' href='/icon.png']
+    = stylesheet_link_tag :application, 'data-turbo-track': 'reload'
+    = javascript_include_tag :application, 'data-turbo-track': 'reload', defer: true
   body
     = render 'shared/header'
 
     - flash.each do |key, value|
       - if value.present?
         .container.mt-3
-          .alert class="alert alert-#{key == 'alert' ? 'danger' : 'success'} alert-dismissible fade show" role="alert"
+          .alert class='alert alert-#{key == 'alert' ? 'danger' : 'success'} alert-dismissible fade show' role='alert'
             = value
-            button.btn-close type="button" data-bs-dismiss="alert" aria-label="Close"
+            button.btn-close type='button' data-bs-dismiss='alert' aria-label='Close'
     = yield
