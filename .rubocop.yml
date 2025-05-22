@@ -26,4 +26,4 @@ Style/IfUnlessModifier:
   Enabled: false
 
 Style/EmptyMethod:
-  Enabled: false
+  EnforcedStyle: expanded

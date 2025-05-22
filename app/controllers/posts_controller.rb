@@ -13,6 +13,8 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  def show; end
+
   def create
     @post = current_user.created_posts.build(post_params)
 
@@ -23,11 +25,7 @@ class PostsController < ApplicationController
     end
   end
 
-  def show
-  end
-
-  def edit
-  end
+  def edit; end
 
   def update
     if @post.update(post_params)
