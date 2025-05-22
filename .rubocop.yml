@@ -26,7 +26,7 @@ Style/IfUnlessModifier:
   Enabled: false
 
 Style/EmptyMethod:
-  Enabled: false
+  Enabled: true
 
 Layout/EmptyLinesAroundMethodBody:
   Enabled: true

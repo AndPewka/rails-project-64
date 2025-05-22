@@ -9,11 +9,16 @@ class PostsController < ApplicationController
     @posts = Post.includes(:creator, :category).order(created_at: :desc)
   end
 
-  def new
-    @post = Post.new
+  def show
+    @post
   end
 
-  def show
+  def edit
+    @post
+  end
+
+  def new
+    @post = Post.new
   end
 
   def create
@@ -24,9 +29,6 @@ class PostsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def edit
   end
 
   def update
