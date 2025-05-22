@@ -13,12 +13,12 @@ class PostsController < ApplicationController
     @post
   end
 
-  def edit
-    @post
-  end
-
   def new
     @post = Post.new
+  end
+
+  def edit
+    @post
   end
 
   def create
