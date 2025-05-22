@@ -47,7 +47,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   test 'authorized user can update a post' do
     sign_in @user
 
-    patch post_path(@post, locale: :en), params: {
+    patch post_path(@post), params: {
       post: {
         title: 'Update title',
         body: 'Body',
@@ -55,7 +55,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       }
     }
 
-    assert_redirected_to post_path(@post, locale: :en)
+    assert_redirected_to post_path(@post)
     follow_redirect!
     assert_response :success
     assert_match 'Update title', response.body
@@ -65,18 +65,18 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     sign_in @user
 
     assert_difference('Post.count', -1) do
-      delete post_path(@post, locale: :en)
+      delete post_path(@post)
     end
 
-    assert_redirected_to root_path(locale: :en)
+    assert_redirected_to root_path
     follow_redirect!
     assert_response :success
   end
 
   test 'unauthorized user cannot access edit post' do
-    get edit_post_path(@post, locale: :en)
+    get edit_post_path(@post)
 
-    assert_redirected_to new_user_session_path(locale: :en)
+    assert_redirected_to new_user_session_path
     follow_redirect!
     assert_response :success
     assert_match I18n.t('devise.failure.unauthenticated'), response.body
@@ -84,9 +84,9 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test "other user cannot edit someone else's post" do
     sign_in @other_user
-    get edit_post_path(@post, locale: :en)
+    get edit_post_path(@post)
 
-    assert_redirected_to root_path(locale: :en)
+    assert_redirected_to root_path
     follow_redirect!
     assert_response :success
     assert_select 'div', text: I18n.t('post.forbidden')

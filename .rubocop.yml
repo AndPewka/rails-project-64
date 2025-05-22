@@ -24,3 +24,6 @@ Metrics/PerceivedComplexity:
 
 Style/IfUnlessModifier:
   Enabled: false
+
+Style/EmptyMethod:
+  Enabled: false

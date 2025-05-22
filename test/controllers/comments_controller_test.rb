@@ -11,24 +11,24 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
   test 'unauthenticated user cannot create comment' do
     assert_no_difference('PostComment.count') do
-      post post_comments_path(@post, locale: :en), params: {
+      post post_comments_path(@post), params: {
         post_comment: { content: 'Unauthorized comment' }
       }
     end
 
-    assert_redirected_to new_user_session_path(locale: :en)
+    assert_redirected_to new_user_session_path
   end
 
   test 'authenticated user can create comment' do
     sign_in @user
 
     assert_difference('PostComment.count', 1) do
-      post post_comments_path(@post, locale: :en), params: {
+      post post_comments_path(@post), params: {
         post_comment: { content: 'Test comment' }
       }
     end
 
-    assert_redirected_to post_path(@post, locale: :en)
+    assert_redirected_to post_path(@post)
     follow_redirect!
     assert_match 'Test comment', response.body
   end
@@ -37,7 +37,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     sign_in @user
 
     assert_difference('PostComment.count', 1) do
-      post post_comments_path(@post, locale: :en), params: {
+      post post_comments_path(@post), params: {
         post_comment: {
           content: 'Nested comment',
           parent_id: @parent_comment.id
@@ -45,19 +45,19 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
       }
     end
 
-    assert_redirected_to post_path(@post, locale: :en)
+    assert_redirected_to post_path(@post)
   end
 
   test 'comment must have content' do
     sign_in @user
 
     assert_no_difference('PostComment.count') do
-      post post_comments_path(@post, locale: :en), params: {
+      post post_comments_path(@post), params: {
         post_comment: { content: '' }
       }
     end
 
-    assert_redirected_to post_path(@post, locale: :en)
+    assert_redirected_to post_path(@post)
     follow_redirect!
     assert_select 'div', text: I18n.t('comments.failed')
   end
@@ -66,10 +66,10 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     sign_in users(:two)
 
     assert_no_difference('PostComment.count') do
-      delete post_comment_path(@post, post_comments(:one), locale: :en)
+      delete post_comment_path(@post, post_comments(:one))
     end
 
-    assert_redirected_to post_path(@post, locale: :en)
+    assert_redirected_to post_path(@post)
     follow_redirect!
     assert_match I18n.t('comments.forbidden'), response.body
   end
