@@ -8,42 +8,44 @@
       .mt-4.d-flex.justify-content-between.align-items-center
         .d-flex.gap-2
           - if user_signed_in? && current_user == @post.creator
-            = link_to t("post.update"), edit_post_path(@post), class: "btn btn-outline-primary btn-sm"
-            = button_to t("post.delete"), post_path(@post),
+            = link_to t('post.update'), edit_post_path(@post), class: 'btn btn-outline-primary btn-sm'
+            = button_to t('post.delete'), post_path(@post),
                     method: :delete,
-                    data: { turbo_confirm: t("post.confirm_delete") },
-                    class: "btn btn-outline-danger btn-sm"
-          = link_to t("post.back"), root_path, class: "btn btn-outline-secondary btn-sm"
+                    data: { turbo_confirm: t('post.confirm_delete') },
+                    class: 'btn btn-outline-danger btn-sm'
+          = link_to t('post.back'), root_path, class: 'btn btn-outline-secondary btn-sm'
 
+        - count = @post.likes.size
         - if user_signed_in?
-          - if current_user.liked_posts.include?(@post)
-            = button_to "#{t("post.unlike")} (#{@post.post_likes.count})",
-                    post_post_like_path(@post),
+          - like = current_user.likes.find_by(post: @post)
+          - if like
+            = button_to "#{t('post.unlike')} (#{count})",
+                    post_like_path(@post, like),
                     method: :delete,
                     class: "btn btn-sm btn-outline-danger"
           - else
-            = button_to "#{t("post.like")} (#{@post.post_likes.count})",
-                    post_post_like_path(@post),
+            = button_to "#{t('post.like')} (#{count})",
+                    post_likes_path(@post),
                     method: :post,
                     class: "btn btn-sm btn-outline-primary"
         - else
-          = button_tag "#{t("post.like")} (#{@post.post_likes.count})",
+          = button_tag "#{t('post.like')} (#{count})",
                   class: "btn btn-sm btn-outline-secondary",
                   disabled: true
 
 .container.mt-4
-  h5 = t("comments.title")
+  h5 = t('comments.title')
 
   - @post.comments.arrange.each do |comment, children|
-    = render partial: "comments/comment", locals: { comment: comment, children: children }
+    = render partial: 'comments/comment', locals: { comment: comment, children: children }
 
 - if user_signed_in?
   .container.mt-4
-    h5 = t("comments.new")
+    h5 = t('comments.new')
 
     = form_with url: post_comments_path(@post), local: true do
-      = hidden_field_tag "post_comment[parent_id]"
+      = hidden_field_tag 'post_comment[parent_id]'
       .mb-3
-        = label_tag "post_comment[content]", t("comments.content")
-        = text_area_tag "post_comment[content]", nil, rows: 3, class: "form-control"
-      = submit_tag t("comments.submit_reply"), class: "btn btn-primary mt-2"
+        = label_tag 'post_comment[content]', t('comments.content')
+        = text_area_tag 'post_comment[content]', nil, rows: 3, class: 'form-control'
+      = submit_tag t('comments.submit_reply'), class: 'btn btn-primary mt-2'

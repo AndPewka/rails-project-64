@@ -3,6 +3,6 @@ class Post < ApplicationRecord
   belongs_to :creator, class_name: "User"
 
   has_many :comments, class_name: "PostComment", dependent: :destroy
-  has_many :post_likes, dependent: :destroy
-  has_many :liked_by_users, through: :post_likes, source: :user
+  has_many :likes,           class_name: "PostLike", dependent: :destroy
+  has_many :liked_by_users,  through: :likes,        source: :user
 end
