@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class PostLikesControllerTest < ActionDispatch::IntegrationTest
@@ -11,7 +13,7 @@ class PostLikesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_session_path(locale: :en)
   end
 
-   test 'authenticated user can like a post' do
+  test 'authenticated user can like a post' do
     sign_in @user
     PostLike.where(user: @user, post: @post).destroy_all
 
@@ -21,7 +23,7 @@ class PostLikesControllerTest < ActionDispatch::IntegrationTest
 
     follow_redirect!
     assert_response :success
-    assert_select 'button', text: /#{I18n.t("post.unlike")}/
+    assert_select 'button', text: /#{I18n.t('post.unlike')}/
   end
 
   test 'authenticated user cannot like the same post twice' do
@@ -34,7 +36,7 @@ class PostLikesControllerTest < ActionDispatch::IntegrationTest
 
     follow_redirect!
     assert_response :success
-    assert_select 'button', text: /#{I18n.t("post.unlike")}/
+    assert_select 'button', text: /#{I18n.t('post.unlike')}/
   end
 
   test 'authenticated user can unlike a liked post' do
@@ -48,7 +50,7 @@ class PostLikesControllerTest < ActionDispatch::IntegrationTest
 
     follow_redirect!
     assert_response :success
-    assert_select 'button', text: /#{I18n.t("post.like")}/
+    assert_select 'button', text: /#{I18n.t('post.like')}/
   end
 
   test 'unliking a post not liked by the user does nothing' do

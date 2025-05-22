@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PostComment < ApplicationRecord
   has_ancestry orphan_strategy: :destroy, cache_depth: true
 

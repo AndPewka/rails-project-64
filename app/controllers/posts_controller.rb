@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
   # layout 'application'
-  before_action :authenticate_user!, except: [ :index, :show ]
+  before_action :authenticate_user!, except: %i[index show]
   before_action :set_post, only: %i[show edit update destroy]
 
   def index
@@ -21,11 +23,9 @@ class PostsController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @post.update(post_params)
@@ -45,9 +45,9 @@ class PostsController < ApplicationController
   def set_post
     @post = Post.find(params[:id])
 
-    if %w[edit update destroy].include?(action_name) && @post.creator != current_user
-      redirect_to root_path, alert: t('post.forbidden')
-    end
+    return unless %w[edit update destroy].include?(action_name) && @post.creator != current_user
+
+    redirect_to root_path, alert: t('post.forbidden')
   end
 
   def post_params

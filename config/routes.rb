@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   # get "pages/home"
   # devise_for :users
@@ -15,11 +17,10 @@ Rails.application.routes.draw do
   # root "posts#index"
   # root "/"
 
-
   root to: 'posts#index'
   devise_for :users
   resources :posts do
-    resources :comments, only: [ :create, :destroy ]
-    resources :likes, only: [ :create, :destroy ]
+    resources :comments, only: %i[create destroy]
+    resources :likes, only: %i[create destroy]
   end
 end

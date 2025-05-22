@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
@@ -49,7 +51,7 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
-  config.i18n.available_locales = [ :en, :ru ]
+  config.i18n.available_locales = %i[en ru]
   config.i18n.default_locale = :ru
   # config.i18n.fallbacks = [:ru]
 

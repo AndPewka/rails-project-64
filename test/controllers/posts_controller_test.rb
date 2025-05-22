@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
- setup do
+  setup do
     @user = users(:one)
     @other_user = users(:two)
     @category = categories(:one)
     @post = posts(:one)
- end
+  end
 
   test 'unauthorized user sees sign in button text with locale' do
     get root_path
@@ -24,10 +26,10 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'authorized user can create a post' do
-  sign_in @user
+    sign_in @user
 
-  assert_difference('Post.count', 1) do
-    post posts_path, params: {
+    assert_difference('Post.count', 1) do
+      post posts_path, params: {
         post: {
           title: 'Create post',
           body: 'body create post',
@@ -71,7 +73,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
- test 'unauthorized user cannot access edit post' do
+  test 'unauthorized user cannot access edit post' do
     get edit_post_path(@post, locale: :en)
 
     assert_redirected_to new_user_session_path(locale: :en)
