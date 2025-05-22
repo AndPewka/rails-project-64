@@ -27,3 +27,6 @@ Style/IfUnlessModifier:
 
 Style/EmptyMethod:
   Enabled: false
+
+Layout/EmptyLinesAroundMethodBody:
+  Enabled: true
