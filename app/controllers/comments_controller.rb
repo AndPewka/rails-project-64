@@ -7,9 +7,9 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      redirect_to post_path(@post), notice: t("comments.created")
+      redirect_to post_path(@post), notice: t('comments.created')
     else
-      redirect_to post_path(@post), alert: t("comments.failed")
+      redirect_to post_path(@post), alert: t('comments.failed')
     end
   end
 
@@ -17,9 +17,9 @@ class CommentsController < ApplicationController
     @comment = PostComment.find(params[:id])
     if @comment.user == current_user
       @comment.destroy
-      redirect_to post_path(@comment.post), notice: t("comments.deleted")
+      redirect_to post_path(@comment.post), notice: t('comments.deleted')
     else
-      redirect_to post_path(@comment.post), alert: t("comments.forbidden")
+      redirect_to post_path(@comment.post), alert: t('comments.forbidden')
     end
   end
 

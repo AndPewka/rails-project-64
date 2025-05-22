@@ -21,7 +21,7 @@ class LikesController < ApplicationController
 
   def set_like
     @like = @post.likes.find(params[:id])
-    redirect_back(fallback_location: root_path, alert: t("likes.forbidden")) \
+    redirect_back(fallback_location: root_path, alert: t('likes.forbidden')) \
       unless @like.user == current_user
   end
 end

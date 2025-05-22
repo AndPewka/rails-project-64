@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class CommentsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -7,37 +7,37 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     @parent_comment = post_comments(:with_comments)
   end
 
-  test "unauthenticated user cannot create comment" do
-    assert_no_difference("PostComment.count") do
+  test 'unauthenticated user cannot create comment' do
+    assert_no_difference('PostComment.count') do
       post post_comments_path(@post, locale: :en), params: {
-        post_comment: { content: "Unauthorized comment" }
+        post_comment: { content: 'Unauthorized comment' }
       }
     end
 
     assert_redirected_to new_user_session_path(locale: :en)
   end
 
-  test "authenticated user can create comment" do
+  test 'authenticated user can create comment' do
     sign_in @user
 
-    assert_difference("PostComment.count", 1) do
+    assert_difference('PostComment.count', 1) do
       post post_comments_path(@post, locale: :en), params: {
-        post_comment: { content: "Test comment" }
+        post_comment: { content: 'Test comment' }
       }
     end
 
     assert_redirected_to post_path(@post, locale: :en)
     follow_redirect!
-    assert_match "Test comment", response.body
+    assert_match 'Test comment', response.body
   end
 
-  test "authenticated user can create nested comment" do
+  test 'authenticated user can create nested comment' do
     sign_in @user
 
-    assert_difference("PostComment.count", 1) do
+    assert_difference('PostComment.count', 1) do
       post post_comments_path(@post, locale: :en), params: {
         post_comment: {
-          content: "Nested comment",
+          content: 'Nested comment',
           parent_id: @parent_comment.id
         }
       }
@@ -46,29 +46,29 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to post_path(@post, locale: :en)
   end
 
-  test "comment must have content" do
+  test 'comment must have content' do
     sign_in @user
 
-    assert_no_difference("PostComment.count") do
+    assert_no_difference('PostComment.count') do
       post post_comments_path(@post, locale: :en), params: {
-        post_comment: { content: "" }
+        post_comment: { content: '' }
       }
     end
 
     assert_redirected_to post_path(@post, locale: :en)
     follow_redirect!
-    assert_select "div", text: I18n.t("comments.failed")
+    assert_select 'div', text: I18n.t('comments.failed')
   end
 
   test "other user cannot delete someone else's comment" do
     sign_in users(:two)
 
-    assert_no_difference("PostComment.count") do
+    assert_no_difference('PostComment.count') do
       delete post_comment_path(@post, post_comments(:one), locale: :en)
     end
 
     assert_redirected_to post_path(@post, locale: :en)
     follow_redirect!
-    assert_match I18n.t("comments.forbidden"), response.body
+    assert_match I18n.t('comments.forbidden'), response.body
   end
 end

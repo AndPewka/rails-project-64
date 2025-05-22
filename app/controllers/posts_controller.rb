@@ -15,7 +15,7 @@ class PostsController < ApplicationController
     @post = current_user.created_posts.build(post_params)
 
     if @post.save
-      redirect_to @post, notice: t("post.created")
+      redirect_to @post, notice: t('post.created')
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,7 +29,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to @post, notice: t("post.updated")
+      redirect_to @post, notice: t('post.updated')
     else
       render :edit, status: :unprocessable_entity
     end
@@ -37,7 +37,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to root_path, notice: t("post.destroyed")
+    redirect_to root_path, notice: t('post.destroyed')
   end
 
   private
@@ -46,7 +46,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     if %w[edit update destroy].include?(action_name) && @post.creator != current_user
-      redirect_to root_path, alert: t("post.forbidden")
+      redirect_to root_path, alert: t('post.forbidden')
     end
   end
 
