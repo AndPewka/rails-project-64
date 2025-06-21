@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
     cookies[:locale] = I18n.locale
   end
 
-  # убрали вставку locale в путь — это ломало тестовые хелперы
   def default_url_options
     {}
   end
