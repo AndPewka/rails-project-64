@@ -63,8 +63,6 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem 'rubocop-rails-omakase', require: false
 
-  gem 'sqlite3'
-
   gem 'slim_lint', require: false
 
   gem 'faker'
@@ -81,6 +79,8 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
 end
+
+gem 'sqlite3'
 
 gem 'devise', '~> 4.9'
 
