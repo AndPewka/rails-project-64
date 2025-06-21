@@ -64,6 +64,8 @@ group :development, :test do
   gem 'rubocop-rails-omakase', require: false
 
   gem 'slim_lint', require: false
+
+  gem 'sqlite3'
 end
 
 group :development do
@@ -77,8 +79,6 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
 end
-
-gem 'sqlite3'
 
 gem 'faker'
 
