@@ -64,8 +64,6 @@ group :development, :test do
   gem 'rubocop-rails-omakase', require: false
 
   gem 'slim_lint', require: false
-
-  gem 'faker'
 end
 
 group :development do
@@ -81,6 +79,8 @@ group :test do
 end
 
 gem 'sqlite3'
+
+gem 'faker'
 
 gem 'devise', '~> 4.9'
 
