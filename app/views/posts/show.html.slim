@@ -15,7 +15,7 @@
                     class: 'btn btn-outline-danger btn-sm'
           = link_to t('post.back'), root_path, class: 'btn btn-outline-secondary btn-sm'
 
-        - count = @post.likes.size
+        - count = @post.likes_count || 0
         - if user_signed_in?
           - like = current_user.likes.find_by(post: @post)
           - if like

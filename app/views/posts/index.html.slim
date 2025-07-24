@@ -12,7 +12,7 @@
         p.mt-3 = truncate(post.body, length: 200)
 
         .d-flex.justify-content-end.align-items-center.mt-3
-          - count = post.likes.size
+          - count = post.likes_count || 0
           - if user_signed_in?
             - like = current_user.likes.find_by(post: post)
             - if like

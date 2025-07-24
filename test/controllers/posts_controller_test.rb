@@ -32,7 +32,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       post posts_path, params: {
         post: {
           title: 'Create post',
-          body: 'body create post',
+          body: 'x' * 200,
           category_id: @category.id
         }
       }
@@ -50,7 +50,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     patch post_path(@post), params: {
       post: {
         title: 'Update title',
-        body: 'Body',
+        body: 'x' * 200,
         category_id: @category.id
       }
     }
