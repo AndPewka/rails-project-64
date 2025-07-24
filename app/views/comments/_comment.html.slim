@@ -10,7 +10,12 @@
     span = l(comment.created_at, format: :short)
 
   - if user_signed_in?
-    .mt-2
+    = button_tag t('comments.reply'),
+      type: 'button',
+      class: 'btn btn-sm btn-link p-0 mt-2',
+      data: { bs_toggle: 'collapse', bs_target: "#reply-form-#{comment.id}" }
+
+    .collapse.mt-2 id="reply-form-#{comment.id}"
       = form_with url: post_comments_path(comment.post), local: true do
         = hidden_field_tag 'post_comment[parent_id]', comment.id
         .mb-2
