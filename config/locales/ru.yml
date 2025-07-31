@@ -1,4 +1,6 @@
 ru:
+  errors:
+    format: "%{message}"
   time:
     formats:
       short: "%d %b %H:%M"

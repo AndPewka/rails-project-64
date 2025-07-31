@@ -43,9 +43,15 @@
   .container.mt-4
     h5 = t('comments.new')
 
-    = form_with url: post_comments_path(@post), local: true do
-      = hidden_field_tag 'post_comment[parent_id]'
-      .mb-3
-        = label_tag 'post_comment[content]', t('comments.content')
-        = text_area_tag 'post_comment[content]', nil, rows: 3, class: 'form-control'
-      = submit_tag t('comments.submit_reply'), class: 'btn btn-primary mt-2'
+    = simple_form_for PostComment.new,
+            url: post_comments_path(@post),
+    local: true do |f|
+      = f.hidden_field :parent_id
+      = f.input :content,
+              label: t('comments.content'),
+              as: :text,
+              input_html: { rows: 2 }
+      = f.button :submit,
+              t('comments.submit_reply'),
+              class: 'btn btn-primary mt-2'
+

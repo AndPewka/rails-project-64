@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   root to: 'posts#index'
   devise_for :users
   resources :posts do
-    resources :comments, only: %i[create destroy]
+    resources :comments, controller: 'comments', only: %i[create destroy]
     resources :likes, only: %i[create destroy]
   end
 end
